@@ -131,10 +131,18 @@ begin
     letraCriptus:=fraseEnviada[(numCharAleatorio+1)*i];
     for j:=1 to Length(lstNovoAlfabeto) do
     begin
-      if lstNovoAlfabeto[j] = letraCriptus then
+      if letraCriptus = ' ' then
       begin
-         lstfrase[i] := lstAlfabeto[j];
+          lstfrase[i] := ' ';
       end;
+      if letraCriptus <> ' ' then
+      begin
+          if lstNovoAlfabeto[j] = letraCriptus then
+          begin
+               lstfrase[i] := lstAlfabeto[j];
+          end;
+      end;
+
     end;
   end;
 
@@ -147,7 +155,7 @@ begin
      try
        StrToInt(key);
        Key:=''[1];
-       ShowMessage('Digite apenas letras');
+
      except
 
      end;

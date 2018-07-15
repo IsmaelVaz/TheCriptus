@@ -144,12 +144,12 @@ end;
 
 procedure TForm1.edtLetraInicialKeyPress(Sender: TObject; var Key: char);
 begin
-  ShowMessage('porra');
      try
        StrToInt(key);
        Key:=''[1];
-     except
        ShowMessage('Digite apenas letras');
+     except
+
      end;
 end;
 

@@ -22,6 +22,7 @@ type
     memoTexto2: TMemo;
     procedure btnCriptografarClick(Sender: TObject);
     procedure btnDescriptografarClick(Sender: TObject);
+    procedure edtLetraInicialKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure GerarNovoAlfabeto(letraPartir:char);
 
@@ -114,11 +115,11 @@ end;
 
 procedure TForm1.btnDescriptografarClick(Sender: TObject);
 var
-  lstFrase,lstFraDeCriptus: array of char;
+  lstFrase: array of char;
   i, j: integer;
-  numTotalLetrasCriptus, numCharFraseEnviada, numCharAleatorio: integer;
+  numCharFraseEnviada, numCharAleatorio: integer;
   fraseEnviada, fraseCriptus: string;
-  letraFrase, letraCriptus:char;
+  letraCriptus:char;
 begin
   fraseEnviada:=memoTexto1.Text;
   numCharAleatorio:= StrToInt(edtQtdLetras.Text);
@@ -127,19 +128,29 @@ begin
   GerarNovoAlfabeto(edtLetraInicial.Text[1]);
   for i:= 1 to numCharFraseEnviada do
   begin
-    //
     letraCriptus:=fraseEnviada[(numCharAleatorio+1)*i];
     for j:=1 to Length(lstNovoAlfabeto) do
     begin
       if lstNovoAlfabeto[j] = letraCriptus then
       begin
-         lstfrase[i] = lstAlfabeto[j];
+         lstfrase[i] := lstAlfabeto[j];
       end;
     end;
   end;
 
   SetString(fraseCriptus, PChar(@lstfrase[1]), Length(lstfrase));
   memoTexto2.Text:= fraseCriptus;
+end;
+
+procedure TForm1.edtLetraInicialKeyPress(Sender: TObject; var Key: char);
+begin
+  ShowMessage('porra');
+     try
+       StrToInt(key);
+       Key:=''[1];
+     except
+       ShowMessage('Digite apenas letras');
+     end;
 end;
 
 procedure TForm1.GerarNovoAlfabeto(letraPartir:char);
@@ -169,6 +180,7 @@ begin
        end;
   end;
 end;
+
 
 end.
 
